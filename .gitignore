@@ -1,0 +1,36 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Web server logs & environment
+error_log
+access_log
+*.log
+
+# Sensitive environment files
+.env
+.env.*
+!.env.example
+
+# Temporary and test artifacts
+/tmp/
+/scratch/
+/tests/temp/

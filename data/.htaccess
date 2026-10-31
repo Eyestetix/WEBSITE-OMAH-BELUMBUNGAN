@@ -1,8 +1,11 @@
-# Cegah akses langsung ke seluruh file di dalam folder data
-<Files ~ "\.(json|lock|bak)$">
-    Order allow,deny
+# Cegah akses langsung via web ke seluruh berkas di dalam folder data
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order deny,allow
     Deny from all
-</Files>
+</IfModule>
 
 # Nonaktifkan directory listing
 Options -Indexes

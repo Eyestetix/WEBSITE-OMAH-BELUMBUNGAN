@@ -1,9 +1,39 @@
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
+# ==============================================================================
+# OMAH BELUMBUNGAN — Web Server Security & URL Rewrite Configuration
+# ==============================================================================
 
-# Rewrite /anatomi/{slug} ke anatomy.php?id={slug}
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^anatomi/([a-zA-Z0-9_-]+)/?$ anatomy.php?id=$1 [L,QSA]
+# 1. Nonaktifkan directory listing di seluruh website
+Options -Indexes
+
+# 2. Blokir akses langsung ke folder internal sensitif (data & includes)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Blokir akses langsung ke folder /data/ dan /includes/
+    RewriteRule ^data/ - [F,L]
+    RewriteRule ^includes/ - [F,L]
+
+    # Blokir akses ke file tersembunyi (.git, .env, .htaccess, dll)
+    RewriteRule (^|/)\.(?!well-known) - [F,L]
+
+    # Rewrite /anatomi/{slug} ke anatomy.php?id={slug}
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^anatomi/([a-zA-Z0-9_-]+)/?$ anatomy.php?id=$1 [L,QSA]
+</IfModule>
+
+# 3. HTTP Security Headers
+<IfModule mod_headers.c>
+    # Mencegah MIME sniffing exploit
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Mencegah Clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # Kebijakan Referrer
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Hapus jejak versi server
+    Header unset X-Powered-By
 </IfModule>
