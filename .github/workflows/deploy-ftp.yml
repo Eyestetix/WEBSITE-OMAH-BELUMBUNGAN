@@ -1,0 +1,55 @@
+name: Deploy to cPanel Hosting (omahbelumbungan.eyestetix.my.id)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: cpanel-deploy
+  cancel-in-progress: false
+
+jobs:
+  web-deploy:
+    name: Sync Files via Explicit FTPS to cPanel
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get Latest Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 📂 Sync Files via Explicit FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          protocol: ftps
+          port: 21
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github*/**
+            **/.DS_Store
+            **/Thumbs.db
+            **/*.log
+            *.zip
+            .env*
+            README.md
+            Dockerfile
+            docker-entrypoint.sh
+            deplexo.yaml
+            .dockerignore
+            scratch/**
+            .system_generated/**
+            data/bookings.json
+            data/users.json
+            data/settings.json
+            uploads/events/**
+            uploads/gallery/**
+            uploads/portfolio/**
+            uploads/hero/**
