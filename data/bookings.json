@@ -1,0 +1,50 @@
+[
+  {
+    "id": "BKG-202611-001",
+    "name": "I Made Sujana, S.Pd.",
+    "institution": "SMA Negeri 1 Abiansemal",
+    "email": "sujana.bali@gmail.com",
+    "phone": "081999888777",
+    "booking_type": "school_study",
+    "type_label": "Kunjungan Edukasi Sekolah",
+    "date": "2026-11-12",
+    "session": "morning",
+    "session_label": "Sesi Pagi (08:30 - 12:30 WITA)",
+    "participants_count": 45,
+    "notes": "Studi lapangan mata pelajaran Muatan Lokal & Seni Budaya untuk kelas XI, materi anatomi rumah Bali dan filosofi natah.",
+    "status": "confirmed",
+    "created_at": "2026-10-28 10:15:00"
+  },
+  {
+    "id": "BKG-202611-002",
+    "name": "Gusti Ayu Mirah",
+    "institution": "Pribadi / Studio Foto Denpasar",
+    "email": "ayumirah.foto@yahoo.com",
+    "phone": "087812345678",
+    "booking_type": "prewedding",
+    "type_label": "Sesi Foto Prewedding Adat Bali",
+    "date": "2026-11-17",
+    "session": "afternoon",
+    "session_label": "Sesi Sore (14:30 - 18:00 WITA)",
+    "participants_count": 8,
+    "notes": "Sesi foto pakaian adat Bali klasik payas agung di Angkul-angkul, Natah, dan teras Bale Meten.",
+    "status": "pending",
+    "created_at": "2026-10-30 16:40:00"
+  },
+  {
+    "id": "BKG-202611-003",
+    "name": "Komunitas Arsitektur Hijau Bali",
+    "institution": "Ikatan Alumni Arsitektur",
+    "email": "hijau.bali@network.org",
+    "phone": "081298765432",
+    "booking_type": "seminar",
+    "type_label": "Seminar / Sarasehan Budaya",
+    "date": "2026-11-28",
+    "session": "full_day",
+    "session_label": "Sehari Penuh (09:00 - 17:00 WITA)",
+    "participants_count": 35,
+    "notes": "Diskusi ketahanan material lokal bambu dan bata pres di arsitektur tropis lembap.",
+    "status": "confirmed",
+    "created_at": "2026-10-25 09:00:00"
+  }
+]

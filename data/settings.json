@@ -1,0 +1,40 @@
+{
+  "site_name": "Omah Blumbungan",
+  "tagline": "Ruang Budaya & Edukasi Tradisional Arsitektur Bali",
+  "description": "Omah Blumbungan adalah ruang belajar dan sanggraloka budaya di Sibang Kaja, Abiansemal. Tempat di mana filosofi Tri Hita Karana dan kearifan Asta Kosala Kosali diwujudkan dalam harmoni pekarangan, natah terbuka, dan bale-bale tradisional yang hidup.",
+  "address": "Sibang Kaja, Abiansemal, Badung, Bali",
+  "whatsapp": "6281234567890",
+  "email": "omah.blumbungan@gmail.com",
+  "instagram": "https://instagram.com/omahblumbungan",
+  "youtube": "https://youtube.com/@omahblumbungan",
+  "facebook": "https://facebook.com/omahblumbungan",
+  "maps_url": "https://maps.app.goo.gl/B8ZZYqaLepbJ1r9g6",
+  "maps_directions_url": "https://www.google.com/maps/dir/?api=1&destination=-8.5667155,115.2082351",
+  "opening_hours": "Buka setiap hari (berdasarkan jadwal kunjungan terdaftar)",
+  "capacity": {
+    "school_study": 80,
+    "seminar_workshop": 50,
+    "prewedding_slots": 2,
+    "gathering": 70
+  },
+  "blackout_dates": [
+    "2026-03-19",
+    "2026-03-20",
+    "2026-04-08",
+    "2026-04-18",
+    "2026-11-04",
+    "2026-11-14"
+  ],
+  "featured_event_popup": {
+    "enabled": false,
+    "event_id": "evt_01",
+    "show_delay_seconds": 2
+  },
+  "hero_slideshow": [
+    "assets/images/herobg.jpg",
+    "assets/images/hero-compound.jpg",
+    "assets/images/photo-01.jpg",
+    "assets/images/photo-03.jpg"
+  ],
+  "hero_slideshow_interval": 5
+}

@@ -1,0 +1,11 @@
+[
+    {
+        "id": "usr_01",
+        "username": "admin",
+        "password": "$2y$12$pQTCJhEtbCpGHYS6FB.e0eUDksUzaeqrLiQByjjBLS73HiwAz6KC2",
+        "name": "Pengelola Omah Belumbungan",
+        "role": "Super Admin",
+        "email": "admin@omahbelumbungan.com",
+        "created_at": "2026-10-31 03:00:00"
+    }
+]

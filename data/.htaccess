@@ -1,0 +1,8 @@
+# Cegah akses langsung ke seluruh file di dalam folder data
+<Files ~ "\.(json|lock|bak)$">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Nonaktifkan directory listing
+Options -Indexes

@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# Rewrite /anatomi/{slug} ke anatomy.php?id={slug}
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^anatomi/([a-zA-Z0-9_-]+)/?$ anatomy.php?id=$1 [L,QSA]
+</IfModule>

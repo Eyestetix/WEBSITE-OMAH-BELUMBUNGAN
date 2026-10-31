@@ -1,0 +1,86 @@
+[
+  {
+    "id": "proj_01",
+    "title": "Konservasi & Revitalisasi Bale Meten Tradisional",
+    "slug": "konservasi-revitalisasi-bale-meten-tradisional",
+    "category": "Restorasi Arsitektur",
+    "location": "Sibang Kaja, Abiansemal, Badung",
+    "year": "2025",
+    "cover_photo": "uploads/portfolio/photo-04.jpg",
+    "short_description": "Pemugaran terukur struktur tiang sakadomas dan susunan bata merah gosok berlandaskan proporsi depa asta kosala kosali.",
+    "full_description": "Proyek konservasi ini memfokuskan pada pemulihan keaslian struktur Bale Meten (Bale Daja) yang berorientasi ke arah Kaja. Menggunakan teknik tradisional tanpa paku besi, balok kayu nangka disambung memakai pasak kayu ulin dengan sendi tiang berbatu paras corak bebadungan. Permukaan dinding dibersihkan dan dipres menggunakan bata merah tulikup pilihan.",
+    "lead_architect": "I Ketut Wirawan & Tim Undagi Tradisional",
+    "materials": "Kayu nangka solid, bata merah gosok, batu paras tulikup, genteng press Bali.",
+    "photos": [
+      "uploads/portfolio/photo-04.jpg",
+      "uploads/portfolio/photo-01.jpg",
+      "uploads/portfolio/photo-06.jpg",
+      "uploads/portfolio/photo-10.jpg"
+    ],
+    "is_featured": true,
+    "status": "published",
+    "created_at": "2026-01-15 10:00:00"
+  },
+  {
+    "id": "proj_02",
+    "title": "Penataan Spasial Sanga Mandala & Natah Terbuka",
+    "slug": "penataan-spasial-sanga-mandala-natah-terbuka",
+    "category": "Desain Pekarangan Adat",
+    "location": "Sibang Kaja, Abiansemal, Badung",
+    "year": "2025",
+    "cover_photo": "uploads/portfolio/photo-03.jpg",
+    "short_description": "Perancangan lanskap pekarangan natah sebagai ruang kosong kosmis (akasa) yang mempertemukan poros Kaja-Kelod dan Kangin-Kauh.",
+    "full_description": "Natah di Omah Belumbungan ditata ulang untuk mengembalikan sirkulasi alami mikro-klimat pedesaan Badung. Dilengkapi tanaman upakara tradisional seperti puring, kamboja cendana, dan bunga pucuk bang, pekarangan ini berfungsi sebagai ruang komunal keluarga sekaligus arena edukasi pengukuran asta kosala kosali bagi generasi muda.",
+    "lead_architect": "Studio Eyestetix & Tetua Adat Sibang Kaja",
+    "materials": "Tanah alami berpasir lembut, batu kali tepian, tanaman endemik upakara Bali.",
+    "photos": [
+      "uploads/portfolio/photo-03.jpg",
+      "uploads/portfolio/photo-02.jpg",
+      "uploads/portfolio/photo-11.jpg"
+    ],
+    "is_featured": false,
+    "status": "published",
+    "created_at": "2026-03-20 14:30:00"
+  },
+  {
+    "id": "proj_03",
+    "title": "Rekonstruksi Jineng Lumbung Pangan Padi Bali",
+    "slug": "rekonstruksi-jineng-lumbung-pangan-padi-bali",
+    "category": "Struktur Tradisional",
+    "location": "Sibang Kaja, Abiansemal, Badung",
+    "year": "2024",
+    "cover_photo": "uploads/portfolio/photo-08.jpg",
+    "short_description": "Pembangunan kembali klumpu/jineng berkaki empat beratap ijuk hitam sebagai manifestasi penghormatan kepada Bhatari Sri.",
+    "full_description": "Jineng berkaki empat berpanggung tinggi ini dibangun untuk menghidupkan kembali memori agraris subak Bali. Menggunakan rangka bambu petung tua dan kayu kelapa pilihan (glugu), bagian kolong difungsikan sebagai bale santai teduh sementara bagian atasnya menjadi tempat penyimpanan cadangan padi upacara.",
+    "lead_architect": "Undagi Kayu Tradisional Abiansemal",
+    "materials": "Bambu petung diawetkan, tiang kayu glugu tua, atap ijuk tebal berlapis.",
+    "photos": [
+      "uploads/portfolio/photo-08.jpg",
+      "uploads/portfolio/photo-07.jpg",
+      "uploads/portfolio/photo-12.jpg"
+    ],
+    "is_featured": false,
+    "status": "published",
+    "created_at": "2026-05-10 09:15:00"
+  },
+  {
+    "id": "proj_04",
+    "title": "Riset Dokumentasi Ornamen Bebadungan & Ragam Patra",
+    "slug": "riset-dokumentasi-ornamen-bebadungan-ragam-patra",
+    "category": "Dokumentasi & Riset",
+    "location": "Badung Tengah, Bali",
+    "year": "2026",
+    "cover_photo": "uploads/portfolio/photo-09.jpg",
+    "short_description": "Digitalisasi dan arsip visual ragam hias kekarangan, patra punggel, dan sendi tiang khas arsitektur Badung abad ke-19.",
+    "full_description": "Program riset kolaboratif bersama mahasiswa arsitektur untuk memetakan karakter khas ukiran batu padas paras kelating dan kayu kamper di kawasan Badung tengah. Hasil riset dipajang di bale edukasi Omah Belumbungan sebagai modul pembelajaran terbuka.",
+    "lead_architect": "Tim Riset Arsitektur Nusantara Omah Belumbungan",
+    "materials": "Arsip fotografi resolusi tinggi, sketsa terukur (as-built drawing), katalog digital.",
+    "photos": [
+      "uploads/portfolio/photo-09.jpg",
+      "uploads/portfolio/photo-05.jpg"
+    ],
+    "is_featured": false,
+    "status": "published",
+    "created_at": "2026-08-01 11:00:00"
+  }
+]

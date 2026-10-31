@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 140" fill="none" class="omah-logo">
+  <!-- Brand Symbol Mark (Light for Dark Backgrounds) -->
+  <g transform="translate(10, 10)">
+    <!-- Roof Silhouette -->
+    <path d="M 60 8 L 114 104 L 94 104 A 34 34 0 0 0 26 104 L 6 104 Z" fill="#F5EFE3" />
+    
+    <!-- Outer Thatch Detailing -->
+    <path d="M 60 8 L 6 104 L 14 104 L 60 14 L 106 104 L 114 104 Z" fill="#F5EFE3" />
+    <!-- Fine Thatch Hatching -->
+    <g stroke="#F5EFE3" stroke-width="1.8" stroke-linecap="round">
+      <line x1="57" y1="12" x2="52" y2="10" />
+      <line x1="53" y1="19" x2="47" y2="17" />
+      <line x1="49" y1="26" x2="42" y2="24" />
+      <line x1="45" y1="33" x2="37" y2="31" />
+      <line x1="41" y1="40" x2="32" y2="38" />
+      <line x1="37" y1="47" x2="27" y2="45" />
+      <line x1="33" y1="54" x2="22" y2="52" />
+      <line x1="29" y1="61" x2="17" y2="59" />
+      <line x1="25" y1="68" x2="12" y2="66" />
+      <line x1="21" y1="75" x2="7" y2="73" />
+      <line x1="17" y1="82" x2="2" y2="80" />
+      <line x1="13" y1="89" x2="-2" y2="87" />
+      <line x1="9" y1="96" x2="-6" y2="94" />
+      
+      <line x1="63" y1="12" x2="68" y2="10" />
+      <line x1="67" y1="19" x2="73" y2="17" />
+      <line x1="71" y1="26" x2="78" y2="24" />
+      <line x1="75" y1="33" x2="83" y2="31" />
+      <line x1="79" y1="40" x2="88" y2="38" />
+      <line x1="83" y1="47" x2="93" y2="45" />
+      <line x1="87" y1="54" x2="98" y2="52" />
+      <line x1="91" y1="61" x2="103" y2="59" />
+      <line x1="95" y1="68" x2="108" y2="66" />
+      <line x1="99" y1="75" x2="113" y2="73" />
+      <line x1="103" y1="82" x2="118" y2="80" />
+      <line x1="107" y1="89" x2="122" y2="87" />
+      <line x1="111" y1="96" x2="126" y2="94" />
+    </g>
+
+    <!-- Inner Contour Line -->
+    <path d="M 60 22 L 18 97 L 27 97 L 60 38 L 93 97 L 102 97 Z" fill="#294522" />
+
+    <!-- Bottom Center Arch Cutout -->
+    <path d="M 36 104 A 24 24 0 0 1 84 104 Z" fill="#294522" />
+    <!-- Center Surya / Bindu Circle & Dot -->
+    <circle cx="60" cy="94" r="14" fill="#F5EFE3" />
+    <circle cx="60" cy="94" r="4.5" fill="#294522" />
+  </g>
+
+  <!-- Brand Typography -->
+  <g transform="translate(145, 60)">
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', 'Cinzel', -apple-system, sans-serif" font-size="28" font-weight="800" fill="#FAF6F0" letter-spacing="1.5">OMAH BLUMBUNGAN</text>
+    <text x="0" y="24" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-size="14.5" font-weight="500" fill="#D3CDC6" letter-spacing="0.5">Sibang Kaja, Abiansemal, Bali</text>
+  </g>
+</svg>

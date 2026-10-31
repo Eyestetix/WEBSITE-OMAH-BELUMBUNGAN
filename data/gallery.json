@@ -1,0 +1,59 @@
+[
+  {
+    "id": "gal_01",
+    "title": "Sarasehan & Praktik Pengukuran Asta Kosala Kosali Bersama Undagi",
+    "slug": "sarasehan-praktik-pengukuran-asta-kosala-kosali",
+    "event_date": "2026-10-18",
+    "category": "Sarasehan Budaya",
+    "cover_photo": "uploads/gallery/photo-01.jpg",
+    "short_description": "Dokumentasi sarasehan santai di Bale Dauh membedah satuan depa, musti, dan lengkat raga manusia dalam tata ruang Bali.",
+    "full_description": "Pertemuan budaya yang mempertemukan para undagi senior, praktisi arsitektur, dan mahasiswa di natah Omah Belumbungan. Peserta mempraktikkan langsung cara merentangkan tangan untuk menentukan batas lebar Angkul-angkul serta menghitung rasio tiang saka berdasar kitab Asta Kosala Kosali.",
+    "photos": [
+      "uploads/gallery/photo-01.jpg",
+      "uploads/gallery/photo-02.jpg",
+      "uploads/gallery/photo-03.jpg",
+      "uploads/gallery/photo-04.jpg",
+      "uploads/gallery/photo-05.jpg",
+      "uploads/gallery/photo-06.jpg"
+    ],
+    "status": "published",
+    "created_at": "2026-10-19 11:30:00"
+  },
+  {
+    "id": "gal_02",
+    "title": "Kunjungan Studi Arsitektur Tradisional Mahasiswa & Peneliti",
+    "slug": "kunjungan-studi-arsitektur-tradisional-mahasiswa",
+    "event_date": "2026-09-24",
+    "category": "Kunjungan Edukasi",
+    "cover_photo": "uploads/gallery/photo-10.jpg",
+    "short_description": "Eksplorasi langsung proporsi bangunan, material batu padas gosok, dan sirkulasi natah terbuka bersama para akademisi.",
+    "full_description": "Sesi studi lapangan rombongan peneliti arsitektur nusantara di Sibang Kaja. Kegiatan mencakup pengukuran langsung dimensi bale-bale, analisis sirkulasi udara mikro di natah, serta pencatatan ragam material batu alam yang lestari.",
+    "photos": [
+      "uploads/gallery/photo-10.jpg",
+      "uploads/gallery/photo-07.jpg",
+      "uploads/gallery/photo-08.jpg",
+      "uploads/gallery/photo-09.jpg",
+      "uploads/gallery/photo-11.jpg"
+    ],
+    "status": "published",
+    "created_at": "2026-09-25 15:45:00"
+  },
+  {
+    "id": "gal_03",
+    "title": "Lokakarya Seni Ukir Ragam Patra & Pahat Batu Paras",
+    "slug": "lokakarya-seni-ukir-ragam-patra-pahat-batu-paras",
+    "event_date": "2026-08-14",
+    "category": "Workshop Kriya Adat",
+    "cover_photo": "uploads/gallery/photo-05.jpg",
+    "short_description": "Praktik pembuatan ornamen stil Bali pada batu paras tulikup dan kayu nangka dipandu sangging tradisional.",
+    "full_description": "Kegiatan lokakarya akhir pekan di bawah keteduhan Bale Dauh Omah Belumbungan. Peserta diajarkan teknik dasar memegang pahat (tatah), memahami pola lekuk patra sari, patra punggel, dan filosofi hiasan penolak bala.",
+    "photos": [
+      "uploads/gallery/photo-05.jpg",
+      "uploads/gallery/photo-06.jpg",
+      "uploads/gallery/photo-12.jpg",
+      "uploads/gallery/photo-02.jpg"
+    ],
+    "status": "published",
+    "created_at": "2026-08-15 16:20:00"
+  }
+]
