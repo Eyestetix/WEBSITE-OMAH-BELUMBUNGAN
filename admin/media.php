@@ -9,6 +9,7 @@ require_once __DIR__ . '/header.php';
 
 // Tangani upload media baru
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['media_file'])) {
+    require_csrf_token();
     $targetFolder = sanitize($_POST['target_folder'] ?? 'gallery');
     if (!in_array($targetFolder, ['gallery', 'portfolio'], true)) {
         $targetFolder = 'gallery';
@@ -190,6 +191,7 @@ if ($searchQ !== '') {
     </div>
 
     <form action="media.php" method="POST" enctype="multipart/form-data">
+      <?php echo csrf_field(); ?>
       <div class="adm-form-group">
         <label for="media_file" class="adm-label">Pilih Berkas Foto (JPG, PNG, WEBP) *</label>
         <input type="file" id="media_file" name="media_file" accept="image/jpeg,image/png,image/webp" required class="adm-input" style="padding: 8px 12px;">

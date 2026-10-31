@@ -38,6 +38,7 @@ if (isset($_GET['toggle_status'])) {
 
 // Tangani aksi POST (Simpan / Hapus)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_csrf_token();
     $action = $_POST['action'] ?? '';
 
     // 1. Aksi Hapus Proyek
@@ -180,6 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <form action="portfolio.php" method="POST" enctype="multipart/form-data">
+      <?php echo csrf_field(); ?>
       <input type="hidden" name="action" value="save">
       <input type="hidden" name="project_id" value="<?php echo htmlspecialchars($editProject['id'] ?? ''); ?>">
 
@@ -350,6 +352,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <?php echo $isPub ? 'Publik' : 'Draft'; ?>
             </a>
             <form method="POST" style="display:inline;" onsubmit="return confirm('Hapus permanen proyek \'<?php echo htmlspecialchars(addslashes($proj['title'])); ?>\'?');">
+              <?php echo csrf_field(); ?>
               <input type="hidden" name="action" value="delete">
               <input type="hidden" name="project_id" value="<?php echo htmlspecialchars($proj['id']); ?>">
               <button type="submit" class="adm-btn adm-btn-danger adm-btn-sm" title="Hapus">

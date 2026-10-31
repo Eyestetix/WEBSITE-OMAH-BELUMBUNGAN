@@ -39,6 +39,7 @@ if (isset($_GET['toggle_status'], $_GET['to'])) {
 
 // Tangani aksi POST (Simpan / Hapus)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_csrf_token();
     $action = $_POST['action'] ?? '';
 
     // Aksi Hapus Event
@@ -200,6 +201,7 @@ if ($searchQuery !== '') {
     </div>
 
     <form action="events.php" method="POST">
+      <?php echo csrf_field(); ?>
       <input type="hidden" name="action" value="save">
       <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($editEvent['id'] ?? ''); ?>">
 
@@ -397,6 +399,7 @@ if ($searchQuery !== '') {
                 Edit
               </a>
               <form method="POST" style="display:inline;" onsubmit="return confirm('Hapus permanen agenda \'<?php echo htmlspecialchars(addslashes($evt['title'])); ?>\'?');">
+                <?php echo csrf_field(); ?>
                 <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($evt['id']); ?>">
                 <button type="submit" class="adm-btn adm-btn-danger adm-btn-sm" title="Hapus">

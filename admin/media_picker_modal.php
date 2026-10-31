@@ -244,6 +244,7 @@ $allPickerMedia = get_all_media_files();
     const formData = new FormData();
     formData.append('image', file);
     formData.append('folder', folder);
+    formData.append('csrf_token', '<?php echo csrf_token(); ?>');
 
     try {
       const response = await fetch('ajax_upload_media.php', {

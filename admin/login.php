@@ -10,17 +10,30 @@ if (is_logged_in()) {
 }
 
 $error = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
-    $password = trim($_POST['password'] ?? '');
 
-    if (empty($username) || empty($password)) {
-        $error = 'Nama pengguna dan kata sandi wajib diisi.';
-    } elseif (login_user($username, $password)) {
-        header('Location: index.php');
-        exit;
+// Cek status throttle / rate limiting
+$throttleMsg = check_login_throttle();
+if ($throttleMsg) {
+    $error = $throttleMsg;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$throttleMsg) {
+    $csrfToken = $_POST['csrf_token'] ?? '';
+    if (!verify_csrf_token($csrfToken)) {
+        $error = 'Sesi kedaluwarsa atau token keamanan (CSRF) tidak valid. Silakan muat ulang halaman.';
     } else {
-        $error = 'Nama pengguna atau kata sandi tidak cocok.';
+        $username = trim($_POST['username'] ?? '');
+        $password = trim($_POST['password'] ?? '');
+
+        if (empty($username) || empty($password)) {
+            $error = 'Nama pengguna dan kata sandi wajib diisi.';
+        } elseif (login_user($username, $password)) {
+            header('Location: index.php');
+            exit;
+        } else {
+            $throttleCheck = check_login_throttle();
+            $error = $throttleCheck ?: 'Nama pengguna atau kata sandi tidak cocok.';
+        }
     }
 }
 ?>
@@ -174,6 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <?php endif; ?>
 
   <form action="login.php" method="POST">
+    <?php echo csrf_field(); ?>
     <div class="form-group">
       <label for="username">Nama Pengguna (Username)</label>
       <input type="text" id="username" name="username" placeholder="Masukkan username" required autofocus>

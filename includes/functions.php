@@ -17,6 +17,17 @@ if (!defined('UPLOAD_PATH')) {
 // Load Premium SVG Icon System
 require_once __DIR__ . '/icons.php';
 
+// Security Headers (SEC-06) - PHP fallback layer
+if (!headers_sent() && php_sapi_name() !== 'cli') {
+    if (function_exists('header_remove')) {
+        header_remove('X-Powered-By');
+    }
+    header('X-Content-Type-Options: nosniff');
+    header('X-Frame-Options: SAMEORIGIN');
+    header('Referrer-Policy: strict-origin-when-cross-origin');
+    header('Permissions-Policy: geolocation=(), camera=(), microphone=()');
+}
+
 /**
  * Membaca file JSON dengan aman
  */

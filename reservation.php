@@ -13,6 +13,14 @@ $preselectedDate = sanitize($_GET['date'] ?? '');
 $preselectedSession = sanitize($_GET['session'] ?? 'morning');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Proteksi Honeypot Anti-Spam Bot (SEC-08)
+    if (!empty($_POST['website_url_hp'])) {
+        // Bot terdeteksi mengisi input perangkap tersembunyi
+        set_flash('success', 'Pengajuan reservasi berhasil dikirim! Silakan menunggu konfirmasi pengelola.');
+        header('Location: reservation.php');
+        exit;
+    }
+
     $name = sanitize($_POST['name'] ?? '');
     $institution = sanitize($_POST['institution'] ?? '');
     $email = sanitize($_POST['email'] ?? '');
@@ -130,6 +138,12 @@ include __DIR__ . '/includes/header.php';
       <!-- Formulir -->
       <div class="form-card">
         <form action="reservation.php" method="POST">
+          <!-- Honeypot Anti-Spam (tersembunyi dari manusia, menjebak bot otomatis) -->
+          <div style="position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+            <label for="website_url_hp">Jangan isi kolom ini jika Anda manusia</label>
+            <input type="text" id="website_url_hp" name="website_url_hp" tabindex="-1" autocomplete="off" value="">
+          </div>
+
           <div class="form-group">
             <label for="booking_type">Jenis Kegiatan / Rombongan *</label>
             <select name="booking_type" id="booking_type" required>

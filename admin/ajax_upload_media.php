@@ -21,6 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// Verifikasi CSRF token
+$csrfToken = $_POST['csrf_token'] ?? ($_SERVER['HTTP_X_CSRF_TOKEN'] ?? '');
+if (!verify_csrf_token($csrfToken)) {
+    http_response_code(403);
+    echo json_encode(['success' => false, 'error' => 'Token keamanan (CSRF) tidak valid atau sesi berakhir.']);
+    exit;
+}
+
 $fileKey = isset($_FILES['image']) ? 'image' : (isset($_FILES['media_file']) ? 'media_file' : null);
 
 if (!$fileKey || !isset($_FILES[$fileKey]) || $_FILES[$fileKey]['error'] !== UPLOAD_ERR_OK) {

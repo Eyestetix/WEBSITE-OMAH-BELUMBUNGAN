@@ -14,6 +14,7 @@ $allBookings = get_bookings();
 
 // Tangani aksi status / hapus
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['booking_id'])) {
+    require_csrf_token();
     $action = $_POST['action'];
     $bookingId = $_POST['booking_id'];
     $adminNotes = isset($_POST['admin_notes']) ? sanitize($_POST['admin_notes']) : null;
@@ -249,6 +250,7 @@ foreach ($allBookings as $b) {
                 <div style="display: flex; gap: 5px; flex-wrap: wrap;">
                   <?php if ($bStatus !== 'confirmed'): ?>
                     <form method="POST" style="display:inline;">
+                      <?php echo csrf_field(); ?>
                       <input type="hidden" name="booking_id" value="<?php echo htmlspecialchars($b['id']); ?>">
                       <input type="hidden" name="action" value="confirm">
                       <button type="submit" class="adm-btn adm-btn-success adm-btn-sm" title="Setujui Kunjungan" onclick="return confirm('Setujui reservasi <?php echo htmlspecialchars($b['id']); ?>?');">
@@ -259,6 +261,7 @@ foreach ($allBookings as $b) {
 
                   <?php if ($bStatus !== 'rejected'): ?>
                     <form method="POST" style="display:inline;">
+                      <?php echo csrf_field(); ?>
                       <input type="hidden" name="booking_id" value="<?php echo htmlspecialchars($b['id']); ?>">
                       <input type="hidden" name="action" value="reject">
                       <button type="submit" class="adm-btn adm-btn-danger adm-btn-sm" title="Tolak Pengajuan" onclick="return confirm('Tolak permohonan <?php echo htmlspecialchars($b['id']); ?>?');">
@@ -269,6 +272,7 @@ foreach ($allBookings as $b) {
 
                   <?php if ($bStatus !== 'pending'): ?>
                     <form method="POST" style="display:inline;">
+                      <?php echo csrf_field(); ?>
                       <input type="hidden" name="booking_id" value="<?php echo htmlspecialchars($b['id']); ?>">
                       <input type="hidden" name="action" value="pending">
                       <button type="submit" class="adm-btn adm-btn-secondary adm-btn-sm" title="Kembalikan status ke Pending">
@@ -278,6 +282,7 @@ foreach ($allBookings as $b) {
                   <?php endif; ?>
 
                   <form method="POST" style="display:inline;" onsubmit="return confirm('Hapus permanen data reservasi <?php echo htmlspecialchars($b['id']); ?>? Tindakan ini tidak dapat dibatalkan.');">
+                    <?php echo csrf_field(); ?>
                     <input type="hidden" name="booking_id" value="<?php echo htmlspecialchars($b['id']); ?>">
                     <input type="hidden" name="action" value="delete">
                     <button type="submit" class="adm-btn adm-btn-secondary adm-btn-sm" style="color: var(--adm-red);" title="Hapus Data">

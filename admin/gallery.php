@@ -37,6 +37,7 @@ if (isset($_GET['toggle_status'])) {
 
 // Tangani aksi POST (Simpan / Hapus)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_csrf_token();
     $action = $_POST['action'] ?? '';
 
     // 1. Aksi Hapus Galeri
@@ -164,6 +165,7 @@ $currentCover = $editGallery['cover_photo'] ?? ($currentPhotos[0] ?? '');
     </div>
 
     <form action="gallery.php" method="POST" enctype="multipart/form-data" id="galleryForm">
+      <?php echo csrf_field(); ?>
       <input type="hidden" name="action" value="save">
       <input type="hidden" name="gallery_id" value="<?php echo htmlspecialchars($editGallery['id'] ?? ''); ?>">
 
@@ -357,6 +359,7 @@ $currentCover = $editGallery['cover_photo'] ?? ($currentPhotos[0] ?? '');
               <div style="display: inline-flex; gap: 6px; align-items: center; justify-content: flex-end;">
                 <a href="gallery.php?edit=<?php echo urlencode($gal['id']); ?>" class="adm-btn adm-btn-secondary" style="width: 32px; height: 32px; padding: 0; display: inline-flex; align-items: center; justify-content: center; font-size: 0.82rem; border-radius: var(--adm-radius-sm);" title="Edit Galeri">✏️</a>
                 <form method="POST" style="display: inline; margin: 0;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus dokumentasi event ini?');">
+                  <?php echo csrf_field(); ?>
                   <input type="hidden" name="action" value="delete">
                   <input type="hidden" name="gallery_id" value="<?php echo htmlspecialchars($gal['id']); ?>">
                   <button type="submit" class="adm-btn adm-btn-danger" style="width: 32px; height: 32px; padding: 0; display: inline-flex; align-items: center; justify-content: center; font-size: 0.82rem; border-radius: var(--adm-radius-sm);" title="Hapus Galeri">🗑️</button>

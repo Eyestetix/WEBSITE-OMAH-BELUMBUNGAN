@@ -31,6 +31,7 @@ $totalPublishedContent = $publishedPortfolio + $publishedGallery + $totalAnatomy
 
 // Tangani aksi cepat dari dasbor (Konfirmasi / Tolak)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['booking_id'])) {
+    require_csrf_token();
     $action = $_POST['action'];
     $bookingId = $_POST['booking_id'];
     
@@ -203,6 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['boo
             <td>
               <div style="display: flex; gap: 6px;">
                 <form method="POST" style="display:inline;">
+                  <?php echo csrf_field(); ?>
                   <input type="hidden" name="booking_id" value="<?php echo htmlspecialchars($b['id']); ?>">
                   <input type="hidden" name="action" value="confirm">
                   <button type="submit" class="adm-btn adm-btn-success adm-btn-sm" onclick="return confirm('Setujui reservasi <?php echo htmlspecialchars($b['id']); ?>?');">
@@ -210,6 +212,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['boo
                   </button>
                 </form>
                 <form method="POST" style="display:inline;">
+                  <?php echo csrf_field(); ?>
                   <input type="hidden" name="booking_id" value="<?php echo htmlspecialchars($b['id']); ?>">
                   <input type="hidden" name="action" value="reject">
                   <button type="submit" class="adm-btn adm-btn-danger adm-btn-sm" onclick="return confirm('Tolak permohonan <?php echo htmlspecialchars($b['id']); ?>?');">

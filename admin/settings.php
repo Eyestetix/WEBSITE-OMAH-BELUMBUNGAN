@@ -9,7 +9,8 @@ $tabTitles = [
     'identity' => 'Pengaturan Website & Identitas',
     'slideshow' => 'Slideshow Hero Beranda',
     'contact' => 'Kontak & Lokasi',
-    'capacity' => 'Kapasitas & Hari Libur Adat'
+    'capacity' => 'Kapasitas & Hari Libur Adat',
+    'security' => 'Keamanan & Kata Sandi Admin'
 ];
 $adminTitle = $tabTitles[$currentTab] ?? 'Pengaturan Kawasan';
 require_once __DIR__ . '/header.php';
@@ -18,6 +19,7 @@ $settings = get_settings();
 
 // Tangani simpan konfigurasi
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_csrf_token();
     $submittedTab = $_POST['tab'] ?? 'identity';
 
     if ($submittedTab === 'contact') {
@@ -54,23 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // Tangani unggah foto baru dari komputer
+        // Tangani unggah foto baru dari komputer secara aman
         if (!empty($_FILES['new_slide_file']['name']) && $_FILES['new_slide_file']['error'] === UPLOAD_ERR_OK) {
             $tmpFile = $_FILES['new_slide_file']['tmp_name'];
             $origName = $_FILES['new_slide_file']['name'];
-            $ext = strtolower(pathinfo($origName, PATHINFO_EXTENSION));
-            $allowedExts = ['jpg', 'jpeg', 'png', 'webp'];
-            
-            if (in_array($ext, $allowedExts, true)) {
-                $uploadDir = __DIR__ . '/../uploads/hero/';
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
-                $newFilename = 'slide_' . time() . '_' . bin2hex(random_bytes(3)) . '.' . $ext;
-                $targetPath = $uploadDir . $newFilename;
-                if (move_uploaded_file($tmpFile, $targetPath)) {
-                    $cleanSlides[] = 'uploads/hero/' . $newFilename;
-                }
+            $uploadRes = upload_image_secure($tmpFile, $origName, 'hero');
+            if ($uploadRes['success']) {
+                $cleanSlides[] = $uploadRes['path'];
             }
         }
 
@@ -105,6 +97,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $settings['blackout_dates'] = array_values(array_unique($cleanBlackouts));
         set_flash('success', 'Batas <strong>Kapasitas &amp; Tanggal Libur Adat</strong> berhasil diperbarui.');
     }
+    elseif ($submittedTab === 'security') {
+        $oldPassword = $_POST['old_password'] ?? '';
+        $newPassword = $_POST['new_password'] ?? '';
+        $confirmPassword = $_POST['confirm_password'] ?? '';
+
+        $users = get_json_data('users.json');
+        $currentUser = get_logged_in_user();
+        $foundUser = false;
+
+        foreach ($users as &$u) {
+            if ($u['id'] === $currentUser['id'] || $u['username'] === $currentUser['username']) {
+                $foundUser = true;
+                if (!password_verify($oldPassword, $u['password'])) {
+                    set_flash('error', 'Kata sandi saat ini yang Anda masukkan tidak cocok.');
+                } elseif (strlen($newPassword) < 8) {
+                    set_flash('error', 'Kata sandi baru minimal harus 8 karakter untuk keamanan.');
+                } elseif ($newPassword !== $confirmPassword) {
+                    set_flash('error', 'Konfirmasi kata sandi baru tidak sesuai.');
+                } else {
+                    $u['password'] = password_hash($newPassword, PASSWORD_BCRYPT);
+                    save_json_data('users.json', $users);
+                    set_flash('success', 'Kata sandi akun administrator berhasil diperbarui! Silakan gunakan kata sandi baru untuk login.');
+                }
+                break;
+            }
+        }
+        if (!$foundUser) {
+            set_flash('error', 'Data pengguna administrator tidak ditemukan.');
+        }
+        header('Location: settings.php?tab=security');
+        exit;
+    }
 
     save_json_data('settings.json', $settings);
     header('Location: settings.php?tab=' . urlencode($submittedTab));
@@ -134,6 +158,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <span class="tab-count"><?php echo count($settings['blackout_dates']); ?></span>
     <?php endif; ?>
   </a>
+  <a href="settings.php?tab=security" class="adm-tab-btn <?php echo ($currentTab === 'security') ? 'active' : ''; ?>">
+    <?php echo ob_icon('shield', ['size' => 15, 'raw' => true]); ?>
+    <span>Keamanan &amp; Akun</span>
+  </a>
 </div>
 
 <div style="max-width: 860px;">
@@ -152,6 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <form action="settings.php" method="POST">
+        <?php echo csrf_field(); ?>
         <input type="hidden" name="tab" value="identity">
 
         <div class="adm-form-group">
@@ -234,6 +263,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <form action="settings.php" method="POST" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
         <input type="hidden" name="tab" value="slideshow">
 
         <!-- Interval Slide Duration -->
@@ -360,6 +390,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <form action="settings.php" method="POST">
+        <?php echo csrf_field(); ?>
         <input type="hidden" name="tab" value="contact">
 
         <div class="adm-form-row">
@@ -418,6 +449,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <form action="settings.php" method="POST">
+        <?php echo csrf_field(); ?>
         <input type="hidden" name="tab" value="capacity">
 
         <h3 style="font-family: var(--adm-font-serif); font-size: 1.05rem; color: var(--adm-forest); margin-bottom: 14px;">
@@ -476,6 +508,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit" class="adm-btn adm-btn-primary">
           Simpan Aturan Kapasitas &amp; Libur Adat &rarr;
+        </button>
+      </form>
+    </div>
+  <?php endif; ?>
+
+  <!-- ========================================== -->
+  <!-- TAB 4: KEAMANAN & KATA SANDI               -->
+  <!-- ========================================== -->
+  <?php if ($currentTab === 'security'): ?>
+    <div class="adm-card">
+      <div class="adm-card-header">
+        <div>
+          <h2 class="adm-card-title">
+            <span>Keamanan Akun &amp; Kata Sandi Administrator</span>
+          </h2>
+          <div class="adm-card-subtitle">Perbarui kredensial autentikasi sistem dan pantau status proteksi CMS Omah Belumbungan</div>
+        </div>
+      </div>
+
+      <div style="background: var(--adm-surface-alt); padding: 16px 20px; border-radius: var(--adm-radius-md); border: 1px solid var(--adm-border); margin-bottom: 24px; display: flex; align-items: flex-start; gap: 14px;">
+        <div style="color: var(--adm-forest); margin-top: 2px;">
+          <?php echo ob_icon('shield-check', ['size' => 24, 'raw' => true]); ?>
+        </div>
+        <div>
+          <div style="font-weight: 600; color: var(--adm-forest); font-size: 0.92rem; margin-bottom: 4px;">Proteksi Autentikasi Aktif</div>
+          <div style="font-size: 0.82rem; color: var(--adm-text-subtle); line-height: 1.5;">
+            Sistem dilengkapi dengan pembatasan percobaan login (Brute-Force Rate Limiting), verifikasi token CSRF pada seluruh operasi administratif, proteksi eksekusi skrip direktori uploads, serta enkripsi sandi menggunakan algoritma Blowfish BCRYPT.
+          </div>
+        </div>
+      </div>
+
+      <form action="settings.php" method="POST">
+        <?php echo csrf_field(); ?>
+        <input type="hidden" name="tab" value="security">
+
+        <div class="adm-form-group">
+          <label for="old_password" class="adm-label">Kata Sandi Saat Ini *</label>
+          <input type="password" id="old_password" name="old_password" required autocomplete="current-password" class="adm-input" placeholder="Masukkan kata sandi saat ini">
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label for="new_password" class="adm-label">Kata Sandi Baru * (Minimal 8 Karakter)</label>
+            <input type="password" id="new_password" name="new_password" minlength="8" required autocomplete="new-password" class="adm-input" placeholder="Minimal 8 karakter unik">
+          </div>
+          <div class="adm-form-group">
+            <label for="confirm_password" class="adm-label">Konfirmasi Kata Sandi Baru *</label>
+            <input type="password" id="confirm_password" name="confirm_password" minlength="8" required autocomplete="new-password" class="adm-input" placeholder="Ulangi kata sandi baru">
+          </div>
+        </div>
+
+        <button type="submit" class="adm-btn adm-btn-primary">
+          Perbarui Kata Sandi Administrator &rarr;
         </button>
       </form>
     </div>

@@ -38,6 +38,7 @@ if (isset($_GET['toggle_status'])) {
 
 // Tangani POST (Simpan / Hapus)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_csrf_token();
     $action = $_POST['action'] ?? 'save';
 
     if ($action === 'delete') {
@@ -150,6 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <form action="anatomy.php" method="POST">
+      <?php echo csrf_field(); ?>
       <input type="hidden" name="action" value="save">
 
       <div class="adm-form-row">
